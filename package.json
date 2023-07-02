@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.2",
+    "nodemon": "^2.0.21"
+  },
+  "name": "new-resume-backend",
+  "description": "",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest --testTimeout=10000 --forceExit",
+    "start": "nodemon server.js",
+    "script": "node app/scripts/populateData.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maaz1996/New-Resume-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maaz1996/New-Resume-backend/issues"
+  },
+  "homepage": "https://github.com/maaz1996/New-Resume-backend#readme"
+}
