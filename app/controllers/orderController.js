@@ -1,5 +1,5 @@
 const {
-  getAllOrderService,
+  getAllResumeService,
   getOneOrderService,
   postOrderService,
   updateOrderService,
@@ -7,12 +7,12 @@ const {
 } = require("../services/orderServices");
 const { HttpStatusCode } = require("../enums/httpStatus");
 
-const getAllOrders = async (req, res) => {
+const getAllResume = async (req, res) => {
   try {
-    const response = await getAllOrderService();
+    const response = await getAllResumeService();
     res.status(HttpStatusCode.SUCCESS).json({
       success: true,
-      message: "All Orders Fetched Successfully",
+      message: "All Resumes Fetched Successfully",
       data: response,
     });
   } catch (err) {
@@ -22,7 +22,7 @@ const getAllOrders = async (req, res) => {
     });
   }
 };
-const getOneOrder = async (req, res) => {
+const getOneResume = async (req, res) => {
   try {
     const orderId = req.params.orderId;
     const response = await getOneOrderService(orderId);
@@ -66,7 +66,7 @@ const postOrder = async (req, res) => {
 const updateOrder = async (req, res) => {
   try {
     const { services, orderId, status } = req.body;
-    const response = await updateOrderService(services, orderId,status);
+    const response = await updateOrderService(services, orderId, status);
     if (response == "order_exists") {
       res.status(HttpStatusCode.SUCCESS).json({
         success: true,
@@ -112,8 +112,8 @@ const deleteOrder = async (req, res) => {
   }
 };
 module.exports = {
-  getAllOrders,
-  getOneOrder,
+  getAllResume,
+  getOneResume,
   postOrder,
   updateOrder,
   deleteOrder,

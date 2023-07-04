@@ -3,12 +3,12 @@ const router = express.Router();
 const middleware = require("../config/auth");
 const resumeController = require("../controllers/orderController");
 
-router.get("/orders/getall", middleware.auth, resumeController.getAllOrders);
+router.get("/resume/getall", middleware.auth, resumeController.getAllResume);
 
 router.get(
   "/orders/get/:orderId",
   middleware.auth,
-  resumeController.getOneOrder
+  resumeController.getOneResume
 );
 
 router.post("/orders/post", middleware.auth, resumeController.postOrder);

@@ -1,12 +1,12 @@
-const { Services, Orders } = require("../models");
+const { Profiles, Orders } = require("../models");
 const timeDifference = (date1, date2) => {
   return Math.abs((date1.getTime() - date2.getTime()) / 3600000);
 };
-const getAllOrderService = async () => {
+const getAllResumeService = async () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let orders = await Orders.find({});
-      resolve(orders);
+      let resumes = await Profiles.find({});
+      resolve(resumes);
     } catch (err) {
       return reject(err);
     }
@@ -39,8 +39,8 @@ const postOrderService = async (services, totalfee) => {
           },
         ],
       }).sort({ updatedAt: -1 });
-      if(!findExisitingOrder){
-        resolve("No order found")
+      if (!findExisitingOrder) {
+        resolve("No order found");
       }
       const timeDiff = timeDifference(
         new Date(),
@@ -62,7 +62,7 @@ const postOrderService = async (services, totalfee) => {
     }
   });
 };
-const updateOrderService = async (services, orderId,status) => {
+const updateOrderService = async (services, orderId, status) => {
   return new Promise(async (resolve, reject) => {
     try {
       if (!orderId) {
@@ -78,8 +78,8 @@ const updateOrderService = async (services, orderId,status) => {
           },
         ],
       }).sort({ updatedAt: -1 });
-      if(!findExisitingOrder){
-        resolve("No order found")
+      if (!findExisitingOrder) {
+        resolve("No order found");
       }
       const timeDiff = timeDifference(
         new Date(),
@@ -88,12 +88,13 @@ const updateOrderService = async (services, orderId,status) => {
       if (timeDiff <= 3) {
         resolve("order_exists");
       } else {
-
-        let updateObj = status ? {
-          status: status,
-        }: {
-          services: services,
-        };
+        let updateObj = status
+          ? {
+              status: status,
+            }
+          : {
+              services: services,
+            };
         let filter = { _id: orderId };
         resolve(await Orders.findOneAndUpdate(filter, updateObj));
       }
@@ -114,7 +115,7 @@ const deleteOrderService = async (orderId) => {
 };
 
 module.exports = {
-  getAllOrderService,
+  getAllResumeService,
   getOneOrderService,
   postOrderService,
   updateOrderService,
