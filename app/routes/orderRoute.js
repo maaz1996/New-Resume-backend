@@ -1,20 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const middleware = require("../config/auth");
-const orderController = require("../controllers/orderController");
+const resumeController = require("../controllers/orderController");
 
-router.get("/orders/getall", middleware.auth, orderController.getAllOrders);
+router.get("/resume/getall", middleware.auth, resumeController.getAllResume);
 
 router.get(
   "/orders/get/:orderId",
   middleware.auth,
-  orderController.getOneOrder
+  resumeController.getOneResume
 );
 
-router.post("/orders/post", middleware.auth, orderController.postOrder);
+router.post("/orders/post", middleware.auth, resumeController.postOrder);
 
-router.put("/orders/update", middleware.auth, orderController.updateOrder);
+router.put("/orders/update", middleware.auth, resumeController.updateOrder);
 
-router.delete("/orders/delete", middleware.auth, orderController.deleteOrder);
+router.delete("/orders/delete", middleware.auth, resumeController.deleteOrder);
 
 module.exports = router;

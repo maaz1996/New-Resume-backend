@@ -1,2 +1,2 @@
-module.exports.Services = require("./service");
+module.exports.Profiles = require("./service");
 module.exports.Orders = require("./order");
