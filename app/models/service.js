@@ -3,18 +3,22 @@ mongoose.Promise = global.Promise;
 
 const ServiceSchema = new mongoose.Schema(
   {
-    sv_id: {
-      type: Number,
+    details: {
+      type: String,
       required: true,
     },
     name: {
       type: String,
       required: true,
     },
+    user_id: {
+      type: String,
+      required: true,
+    },
     status: {
       type: String,
       required: true,
-      default: "OFF",
+      default: "ON",
       enum: ["ON", "OFF"],
     },
   },
@@ -23,4 +27,4 @@ const ServiceSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("service", ServiceSchema);
+module.exports = mongoose.model("profile", ServiceSchema);
