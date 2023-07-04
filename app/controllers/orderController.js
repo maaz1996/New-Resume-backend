@@ -41,21 +41,13 @@ const getOneResume = async (req, res) => {
 
 const postOrder = async (req, res) => {
   try {
-    const { services, totalfee } = req.body;
-    const response = await postOrderService(services, totalfee);
-    if (response == "order_exists") {
-      res.status(HttpStatusCode.SUCCESS).json({
-        success: true,
-        message: "Order Request already exists, Please try after sometime!",
-        data: "NA",
-      });
-    } else {
-      res.status(HttpStatusCode.SUCCESS).json({
-        success: true,
-        message: "Order posted Successfully!`",
-        data: response,
-      });
-    }
+    const { user_id, details, name } = req.body;
+    const response = await postOrderService(user_id, details, name);
+    res.status(HttpStatusCode.SUCCESS).json({
+      success: true,
+      message: "Order posted Successfully!`",
+      data: response,
+    });
   } catch (err) {
     res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
       success: false,
