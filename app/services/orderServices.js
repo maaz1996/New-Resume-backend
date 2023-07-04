@@ -27,9 +27,9 @@ const postOrderService = async (user_id, details, name) => {
   return new Promise(async (resolve, reject) => {
     try {
       let createObj = {
-        user_id: user_id,
         details: JSON.stringify(details),
         name: name,
+        user_id: user_id,
         status: "ON",
       };
       console.log(createObj);
