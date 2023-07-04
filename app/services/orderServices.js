@@ -1,4 +1,4 @@
-const { Profiles, Orders } = require("../models");
+const { Profiles } = require("../models");
 const timeDifference = (date1, date2) => {
   return Math.abs((date1.getTime() - date2.getTime()) / 3600000);
 };
@@ -13,7 +13,7 @@ const getAllResumeService = async () => {
   });
 };
 
-const getOneOrderService = async (orderId) => {
+const getOneProfileService = async (orderId) => {
   return new Promise(async (resolve, reject) => {
     try {
       let foundOrder = await Orders.findById(orderId);
@@ -23,40 +23,19 @@ const getOneOrderService = async (orderId) => {
     }
   });
 };
-const postOrderService = async (services, totalfee) => {
+const postOrderService = async (user_id, details, name) => {
   return new Promise(async (resolve, reject) => {
     try {
-      if (!services || !totalfee) {
-        return reject("Missing values");
-      }
-      const serviceIds = services.map((s) => s.id);
+      let createObj = {
+        user_id: user_id,
+        details: JSON.stringify(details),
+        name: name,
+        status: "ON",
+      };
+      console.log(createObj);
 
-      const findExisitingOrder = await Orders.findOne({
-        $and: [
-          { "services.id": serviceIds[0] },
-          {
-            status: "INCOMPLETE",
-          },
-        ],
-      }).sort({ updatedAt: -1 });
-      if (!findExisitingOrder) {
-        resolve("No order found");
-      }
-      const timeDiff = timeDifference(
-        new Date(),
-        findExisitingOrder?.order_datetime
-      );
-      if (timeDiff <= 3) {
-        resolve("order_exists");
-      } else {
-        let createObj = {
-          order_datetime: new Date(),
-          services: services,
-          totalfee: totalfee,
-          status: "INCOMPLETE",
-        };
-        resolve(await Orders.create(createObj));
-      }
+      const response = await Profiles.create(createObj);
+      resolve(response);
     } catch (err) {
       return reject(err);
     }
@@ -116,7 +95,7 @@ const deleteOrderService = async (orderId) => {
 
 module.exports = {
   getAllResumeService,
-  getOneOrderService,
+  getOneProfileService,
   postOrderService,
   updateOrderService,
   deleteOrderService,

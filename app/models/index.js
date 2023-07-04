@@ -1,2 +1,1 @@
-module.exports.Profiles = require("./service");
-module.exports.Orders = require("./order");
+module.exports.Profiles = require("./profile");

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 
-const ServiceSchema = new mongoose.Schema(
+const ProfileSchema = new mongoose.Schema(
   {
     details: {
       type: String,
@@ -17,7 +17,7 @@ const ServiceSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      required: true,
+      required: false,
       default: "ON",
       enum: ["ON", "OFF"],
     },
@@ -27,4 +27,4 @@ const ServiceSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("profile", ServiceSchema);
+module.exports = mongoose.model("profile", ProfileSchema);
