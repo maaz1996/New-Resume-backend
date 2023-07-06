@@ -32,9 +32,8 @@ const postOrderService = async (user_id, details, name) => {
         user_id: user_id,
         status: "ON",
       };
-      console.log(createObj);
-
-      const response = await Profiles.create(createObj);
+      console.log(Profiles);
+      const response = await Profiles.insert(createObj);
       resolve(response);
     } catch (err) {
       return reject(err);
