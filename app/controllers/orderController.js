@@ -43,6 +43,7 @@ const postOrder = async (req, res) => {
   try {
     const { user_id, details, name } = req.body;
     const response = await postOrderService(user_id, details, name);
+    console.log(response);
     res.status(HttpStatusCode.SUCCESS).json({
       success: true,
       message: "Order posted Successfully!`",
