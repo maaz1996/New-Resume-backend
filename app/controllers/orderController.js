@@ -1,9 +1,9 @@
 const {
   getAllResumeService,
-  getOneOrderService,
-  postOrderService,
-  updateOrderService,
-  deleteOrderService,
+  getOneResumeService,
+  postResumeService,
+  updateResumeService,
+  deleteResumeService,
 } = require("../services/orderServices");
 const { HttpStatusCode } = require("../enums/httpStatus");
 
@@ -25,7 +25,7 @@ const getAllResume = async (req, res) => {
 const getOneResume = async (req, res) => {
   try {
     const orderId = req.params.orderId;
-    const response = await getOneOrderService(orderId);
+    const response = await getOneResumeService(orderId);
     res.status(HttpStatusCode.SUCCESS).json({
       success: true,
       message: "Order Fetched Successfully!",
@@ -38,11 +38,10 @@ const getOneResume = async (req, res) => {
     });
   }
 };
-
-const postOrder = async (req, res) => {
+const postResume = async (req, res) => {
   try {
     const { user_id, details, name } = req.body;
-    const response = await postOrderService(user_id, details, name);
+    const response = await postResumeService(user_id, details, name);
     console.log(response);
     res.status(HttpStatusCode.SUCCESS).json({
       success: true,
@@ -56,10 +55,10 @@ const postOrder = async (req, res) => {
     });
   }
 };
-const updateOrder = async (req, res) => {
+const updateResume = async (req, res) => {
   try {
     const { services, orderId, status } = req.body;
-    const response = await updateOrderService(services, orderId, status);
+    const response = await updateResumeService(services, orderId, status);
     if (response == "order_exists") {
       res.status(HttpStatusCode.SUCCESS).json({
         success: true,
@@ -80,10 +79,10 @@ const updateOrder = async (req, res) => {
     });
   }
 };
-const deleteOrder = async (req, res) => {
+const deleteResume = async (req, res) => {
   try {
     const { orderId } = req.body;
-    const response = await deleteOrderService(orderId);
+    const response = await deleteResumeService(orderId);
     if (response == "order_exists") {
       res.status(HttpStatusCode.SUCCESS).json({
         success: true,
@@ -107,7 +106,7 @@ const deleteOrder = async (req, res) => {
 module.exports = {
   getAllResume,
   getOneResume,
-  postOrder,
-  updateOrder,
-  deleteOrder,
+  postResume,
+  updateResume,
+  deleteResume,
 };

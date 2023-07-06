@@ -6,15 +6,15 @@ const resumeController = require("../controllers/orderController");
 router.get("/resume/getall", middleware.auth, resumeController.getAllResume);
 
 router.get(
-  "/orders/get/:orderId",
+  "/resume/get/:resumeId",
   middleware.auth,
   resumeController.getOneResume
 );
 
-router.post("/orders/post", middleware.auth, resumeController.postOrder);
+router.post("/resume/post", middleware.auth, resumeController.postResume);
 
-router.put("/orders/update", middleware.auth, resumeController.updateOrder);
+router.put("/resume/update", middleware.auth, resumeController.updateResume);
 
-router.delete("/orders/delete", middleware.auth, resumeController.deleteOrder);
+router.delete("/resume/delete", middleware.auth, resumeController.deleteResume);
 
 module.exports = router;
