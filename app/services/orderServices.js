@@ -13,7 +13,7 @@ const getAllResumeService = async () => {
   });
 };
 
-const getOneProfileService = async (orderId) => {
+const getOneResumeService = async (orderId) => {
   return new Promise(async (resolve, reject) => {
     try {
       let foundOrder = await Orders.findById(orderId);
@@ -23,24 +23,22 @@ const getOneProfileService = async (orderId) => {
     }
   });
 };
-const postOrderService = async (user_id, details, name) => {
+const postResumeService = async (user_id, details, name) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let createObj = {
+      const newUser = new Profiles({
         details: JSON.stringify(details),
-        name: name,
-        user_id: user_id,
-        status: "ON",
-      };
-      console.log(Profiles);
-      const response = await Profiles.insert(createObj);
-      resolve(response);
+        name,
+        user_id,
+      });
+      const users = await newUser.save();
+      resolve(users);
     } catch (err) {
       return reject(err);
     }
   });
 };
-const updateOrderService = async (services, orderId, status) => {
+const updateResumeService = async (services, orderId, status) => {
   return new Promise(async (resolve, reject) => {
     try {
       if (!orderId) {
@@ -81,7 +79,7 @@ const updateOrderService = async (services, orderId, status) => {
     }
   });
 };
-const deleteOrderService = async (orderId) => {
+const deleteResumeService = async (orderId) => {
   return new Promise(async (resolve, reject) => {
     try {
       await Orders.deleteOne({ _id: orderId });
@@ -94,8 +92,8 @@ const deleteOrderService = async (orderId) => {
 
 module.exports = {
   getAllResumeService,
-  getOneProfileService,
-  postOrderService,
-  updateOrderService,
-  deleteOrderService,
+  getOneResumeService,
+  postResumeService,
+  updateResumeService,
+  deleteResumeService,
 };
