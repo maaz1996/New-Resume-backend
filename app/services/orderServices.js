@@ -26,15 +26,13 @@ const getOneProfileService = async (orderId) => {
 const postOrderService = async (user_id, details, name) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let createObj = {
+      const newUser = new Profiles({
         details: JSON.stringify(details),
-        name: name,
-        user_id: user_id,
-        status: "ON",
-      };
-      console.log(Profiles);
-      const response = await Profiles.insert(createObj);
-      resolve(response);
+        name,
+        user_id,
+      });
+      const users = await newUser.save();
+      resolve(users);
     } catch (err) {
       return reject(err);
     }
