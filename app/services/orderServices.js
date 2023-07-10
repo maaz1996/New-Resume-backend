@@ -16,23 +16,28 @@ const getAllResumeService = async () => {
 const getOneResumeService = async (orderId) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let foundOrder = await Orders.findById(orderId);
+      let foundOrder = await Orders.findOne({ user_id: orderId });
       resolve(foundOrder);
     } catch (err) {
       return reject(err);
     }
   });
 };
-const postResumeService = async (user_id, details, name) => {
+const postResumeService = async (userId, details, name) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const newUser = new Profiles({
-        details: JSON.stringify(details),
-        name,
-        user_id,
-      });
-      const users = await newUser.save();
-      resolve(users);
+      const findProfile = await Profiles.findOne({ user_id: userId });
+      if (findProfile) {
+        resolve("profile_exists");
+      } else {
+        const newUser = new Profiles({
+          details: JSON.stringify(details),
+          name,
+          userId,
+        });
+        await newUser.save();
+        resolve("saved_user");
+      }
     } catch (err) {
       return reject(err);
     }

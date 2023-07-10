@@ -12,6 +12,7 @@ const HttpStatusCode = {
   INTERNAL_SERVER_ERROR: 500,
   NOT_ACCEPTABLE: 406,
   MULTIPLE_CHOICES: 300,
+  UNPROCESSABLE_ENTITY: 422,
 };
 
 module.exports = { HttpStatusCode };
