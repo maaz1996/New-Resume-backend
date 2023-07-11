@@ -4,7 +4,7 @@ const {
   postResumeService,
   updateResumeService,
   deleteResumeService,
-} = require("../services/orderServices");
+} = require("../services/resumeServices");
 const { HttpStatusCode } = require("../enums/httpStatus");
 
 const getAllResume = async (req, res) => {

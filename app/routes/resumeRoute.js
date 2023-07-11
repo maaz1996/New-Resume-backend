@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const middleware = require("../config/auth");
-const resumeController = require("../controllers/orderController");
+const resumeController = require("../controllers/resumeController");
 
 router.get("/resume/getall", middleware.auth, resumeController.getAllResume);
 

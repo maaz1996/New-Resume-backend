@@ -1,8 +1,7 @@
 require("dotenv").config();
 const { dbConnection } = require("../../config/db");
-dbConnection();
 const logger = require("../utils/logger");
-
+dbConnection();
 const { Services, Orders } = require("../models/index");
 
 const addServiceDataInDB = async () => {
