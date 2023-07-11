@@ -3,7 +3,7 @@ const app = express();
 const config = require("./config/index");
 const { dbConnection } = require("./config/db");
 const logger = require("./app/utils/logger");
-const resumeRoutes = require("./app/routes/orderRoute");
+const resumeRoutes = require("./app/routes/resumeRoute");
 app.use(express.json());
 
 // CORS Headers

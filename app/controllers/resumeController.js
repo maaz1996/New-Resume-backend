@@ -4,7 +4,7 @@ const {
   postResumeService,
   updateResumeService,
   deleteResumeService,
-} = require("../services/orderServices");
+} = require("../services/resumeServices");
 const { HttpStatusCode } = require("../enums/httpStatus");
 
 const getAllResume = async (req, res) => {
@@ -42,11 +42,21 @@ const postResume = async (req, res) => {
   try {
     const { user_id, details, name } = req.body;
     const response = await postResumeService(user_id, details, name);
-    console.log(response);
-    res.status(HttpStatusCode.SUCCESS).json({
-      success: true,
-      message: "Order posted Successfully!`",
-      data: response,
+    let finalResponse, statusCode, finalStatus, finalData;
+    if (response == "profile_exists") {
+      (finalResponse = "Profile already Exists!"),
+        (statusCode = HttpStatusCode.UNPROCESSABLE_ENTITY),
+        (finalStatus = false);
+    } else {
+      (finalResponse = "Order posted Successfully!"),
+        (statusCode = HttpStatusCode.SUCCESS),
+        (finalStatus = true),
+        (finalData = response);
+    }
+    res.status(statusCode).json({
+      success: finalStatus,
+      message: finalResponse,
+      data: finalData,
     });
   } catch (err) {
     res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
