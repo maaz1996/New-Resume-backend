@@ -1,1 +1,1 @@
-module.exports.Profiles = require("./Profile");
+module.exports.Profiles = require("./profile");
