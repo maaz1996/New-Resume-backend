@@ -24,8 +24,8 @@ const getAllResume = async (req, res) => {
 };
 const getOneResume = async (req, res) => {
   try {
-    const orderId = req.params.orderId;
-    const response = await getOneResumeService(orderId);
+    const resumeId = req.params.resumeId;
+    const response = await getOneResumeService(resumeId);
     res.status(HttpStatusCode.SUCCESS).json({
       success: true,
       message: "Order Fetched Successfully!",

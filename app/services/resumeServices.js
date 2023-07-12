@@ -13,11 +13,11 @@ const getAllResumeService = async () => {
   });
 };
 
-const getOneResumeService = async (orderId) => {
+const getOneResumeService = async (resumeId) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let foundOrder = await Orders.findOne({ user_id: orderId });
-      resolve(foundOrder);
+      let foundResume = await Profiles.findOne({ user_id: resumeId });
+      resolve(foundResume);
     } catch (err) {
       return reject(err);
     }
