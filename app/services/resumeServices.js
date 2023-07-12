@@ -49,7 +49,7 @@ const updateResumeService = async (services, orderId, status) => {
       if (!orderId) {
         return reject("Missing values");
       }
-      const findExisitingOrder = await Orders.findOne({
+      const findExisitingOrder = await Profiles.findOne({
         $and: [
           {
             _id: orderId,
@@ -77,7 +77,7 @@ const updateResumeService = async (services, orderId, status) => {
               services: services,
             };
         let filter = { _id: orderId };
-        resolve(await Orders.findOneAndUpdate(filter, updateObj));
+        resolve(await Profiles.findOneAndUpdate(filter, updateObj));
       }
     } catch (err) {
       return reject(err);
@@ -87,7 +87,7 @@ const updateResumeService = async (services, orderId, status) => {
 const deleteResumeService = async (orderId) => {
   return new Promise(async (resolve, reject) => {
     try {
-      await Orders.deleteOne({ _id: orderId });
+      await Profiles.deleteOne({ _id: orderId });
       resolve("order deleted");
     } catch (err) {
       return reject(err);
