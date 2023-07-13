@@ -16,5 +16,6 @@ router.post("/resume/post", middleware.auth, resumeController.postResume);
 router.put("/resume/update", middleware.auth, resumeController.updateResume);
 
 router.delete("/resume/delete", middleware.auth, resumeController.deleteResume);
+router.post("/resume/test", middleware.auth, resumeController.testResume);
 
 module.exports = router;

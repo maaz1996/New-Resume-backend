@@ -4,6 +4,7 @@ const {
   postResumeService,
   updateResumeService,
   deleteResumeService,
+  testResumeService,
 } = require("../services/resumeServices");
 const { HttpStatusCode } = require("../enums/httpStatus");
 
@@ -113,10 +114,29 @@ const deleteResume = async (req, res) => {
     });
   }
 };
+const testResume = async (req, res) => {
+  try {
+    const { orderId } = req.body;
+    const response = await testResumeService(orderId);
+
+    res.status(HttpStatusCode.SUCCESS).json({
+      success: true,
+      message: "Order posted Successfully!`",
+      data: response,
+    });
+  } catch (err) {
+    res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: "Error in posting order!. Please try again later!",
+    });
+  }
+};
+
 module.exports = {
   getAllResume,
   getOneResume,
   postResume,
   updateResume,
   deleteResume,
+  testResume,
 };
