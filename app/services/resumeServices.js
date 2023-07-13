@@ -94,6 +94,15 @@ const deleteResumeService = async (orderId) => {
     }
   });
 };
+const testResumeService = async (orderId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      resolve(orderId);
+    } catch (err) {
+      return reject(err);
+    }
+  });
+};
 
 module.exports = {
   getAllResumeService,
@@ -101,4 +110,5 @@ module.exports = {
   postResumeService,
   updateResumeService,
   deleteResumeService,
+  testResumeService,
 };
