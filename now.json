@@ -1,8 +1,6 @@
 {
     "version": 2,
     "functions": {
-      "timeout": {
-        "duration": 20
-      }
+      "timeout": 20
     }
   }
