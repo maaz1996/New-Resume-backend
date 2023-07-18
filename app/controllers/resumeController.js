@@ -49,7 +49,7 @@ const postResume = async (req, res) => {
         (statusCode = HttpStatusCode.UNPROCESSABLE_ENTITY),
         (finalStatus = false);
     } else {
-      (finalResponse = "Order posted Successfully!"),
+      (finalResponse = "Resume posted Successfully!"),
         (statusCode = HttpStatusCode.SUCCESS),
         (finalStatus = true),
         (finalData = response);
@@ -62,7 +62,7 @@ const postResume = async (req, res) => {
   } catch (err) {
     res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
       success: false,
-      message: "Error in posting order!. Please try again later!",
+      message: "Error in posting resume!. Please try again later!",
     });
   }
 };
